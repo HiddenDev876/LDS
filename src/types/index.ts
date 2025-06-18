@@ -33,3 +33,13 @@ export interface ProjectItem {
   liveLink?: string;
   category: string;
 }
+
+export interface TeamMemberItem {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  imageUrl: string;
+  dataAiHint: string;
+  socialLink?: string; // Optional social media link
+}

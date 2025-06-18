@@ -4,6 +4,9 @@ import CircularSwiperSection from '@/components/sections/CircularSwiperSection';
 import Footer from '@/components/layout/Footer';
 import AboutUsShortSection from '@/components/sections/AboutUsShortSection';
 import ServicesHighlightSection from '@/components/sections/ServicesHighlightSection';
+import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
+import StatisticsSection from '@/components/sections/StatisticsSection';
+import OurTeamSection from '@/components/sections/OurTeamSection';
 
 
 export default function Home() {
@@ -14,6 +17,9 @@ export default function Home() {
         <HeroSection />
         <AboutUsShortSection />
         <ServicesHighlightSection />
+        <WhyChooseUsSection />
+        <StatisticsSection />
+        <OurTeamSection />
         <CircularSwiperSection />
       </main>
       <Footer />
