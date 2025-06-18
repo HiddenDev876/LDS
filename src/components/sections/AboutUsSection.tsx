@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function AboutUsSection() {
   const [mounted, setMounted] = useState(false);
@@ -19,11 +21,16 @@ export default function AboutUsSection() {
               LDS Data Solutions is a premier Business Process Outsourcing (BPO) provider, dedicated to delivering innovative and reliable solutions that drive business growth. We specialize in a wide array of services designed to optimize your operations and enhance customer experiences.
             </p>
             <p className="mt-4 text-lg text-foreground/80 leading-relaxed">
-              Our mission is to empower businesses by leveraging cutting-edge technology and a highly skilled workforce. We believe in building strong partnerships with our clients, understanding their unique needs, and delivering tailored services that exceed expectations. At LDS Data Hub, we are committed to quality, security, and continuous improvement.
+              Our mission is to empower businesses by leveraging cutting-edge technology and a highly skilled workforce. We believe in building strong partnerships with our clients, understanding their unique needs, and delivering tailored services that exceed expectations. At LDS Data Solutions, we are committed to quality, security, and continuous improvement.
             </p>
              <p className="mt-4 text-lg text-foreground/80 leading-relaxed">
-              With a focus on data-driven strategies and customer-centric approaches, we help you navigate the complexities of the modern business landscape. Trust LDS Data Hub to be your reliable partner in achieving operational excellence and strategic goals.
+              With a focus on data-driven strategies and customer-centric approaches, we help you navigate the complexities of the modern business landscape. Trust LDS Data Solutions to be your reliable partner in achieving operational excellence and strategic goals. We also welcome collaborations and new project proposals to foster innovation and mutual growth.
             </p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Link href="/contact">Collaborate With Us</Link>
+              </Button>
+            </div>
           </div>
           <div className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-2xl group">
             <Image

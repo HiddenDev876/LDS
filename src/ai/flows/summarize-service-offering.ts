@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview Summarizes LDS Data Hub's BPO service offerings based on a user's question.
+ * @fileOverview Summarizes LDS Data Solutions' BPO service offerings based on a user's question.
  *
  * - summarizeServiceOffering - A function that summarizes service offerings based on a user question.
  * - SummarizeServiceOfferingInput - The input type for the summarizeServiceOffering function.
@@ -20,7 +20,7 @@ export type SummarizeServiceOfferingInput = z.infer<typeof SummarizeServiceOffer
 const SummarizeServiceOfferingOutputSchema = z.object({
   summary: z
     .string()
-    .describe('A summary of the relevant service offerings from LDS Data Hub.'),
+    .describe('A summary of the relevant service offerings from LDS Data Solutions.'),
 });
 export type SummarizeServiceOfferingOutput = z.infer<typeof SummarizeServiceOfferingOutputSchema>;
 
@@ -32,16 +32,17 @@ const prompt = ai.definePrompt({
   name: 'summarizeServiceOfferingPrompt',
   input: {schema: SummarizeServiceOfferingInputSchema},
   output: {schema: SummarizeServiceOfferingOutputSchema},
-  prompt: `You are an expert BPO service summarizer for LDS Data Hub.
+  prompt: `You are an expert BPO service summarizer for LDS Data Solutions.
 
-  LDS Data Hub offers the following services:
+  LDS Data Solutions offers the following services:
   - Voice process
   - Non-voice process
   - Data mining
   - Data extraction
   - Audio translation
+  - Recruitment Assistance (helping organizations hire good candidates)
 
-  Based on the user's question, summarize the relevant service offerings from LDS Data Hub.
+  Based on the user's question, summarize the relevant service offerings from LDS Data Solutions.
 
   Question: {{{question}}}`,
 });

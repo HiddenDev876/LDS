@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mic, MessageSquareText, DatabaseZap, FileOutput, Languages, Icon } from "lucide-react";
+import { Mic, MessageSquareText, DatabaseZap, FileOutput, Languages, Briefcase, Icon } from "lucide-react";
 import type { ServiceItem } from "@/types";
 import { useEffect, useState } from "react";
 
@@ -35,6 +35,12 @@ const services: ServiceItem[] = [
     title: "Audio Translation",
     description: "Professional translation and transcription services for audio content across multiple languages.",
     dataAiHint: "language translate"
+  },
+  {
+    icon: Briefcase,
+    title: "Recruitment Assistance",
+    description: "We help organizations find and hire qualified candidates to build strong and effective teams.",
+    dataAiHint: "recruitment hiring"
   },
 ];
 

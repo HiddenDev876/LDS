@@ -19,14 +19,14 @@ export default function HeroSection() {
           Empowering Your Business with <span className="block md:inline">Intelligent Data Solutions</span>
         </h1>
         <p className="mt-6 max-w-2xl mx-auto text-lg text-foreground/80 sm:text-xl md:text-2xl">
-          LDS Data Hub provides comprehensive BPO services, from voice processes to advanced data mining, tailored to elevate your operational efficiency.
+          LDS Data Solutions provides comprehensive BPO services, from voice processes to advanced data mining, tailored to elevate your operational efficiency.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transform hover:scale-105 transition-transform duration-300">
-            <Link href="#services">Explore Our Services</Link>
+            <Link href="/services">Explore Our Services</Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10 shadow-lg transform hover:scale-105 transition-transform duration-300">
-            <Link href="#contact">Get in Touch</Link>
+            <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
       </div>

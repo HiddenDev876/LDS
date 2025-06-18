@@ -8,22 +8,22 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
-import { Send, Loader2 } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().optional(),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  projectDetails: z.string().min(10, { message: "Project details must be at least 10 characters." }),
 });
 
 type ContactFormValues = z.infer<typeof formSchema>;
 
 export default function ContactFormSection() {
-  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -33,39 +33,34 @@ export default function ContactFormSection() {
       name: "",
       email: "",
       phone: "",
-      message: "",
+      projectDetails: "",
     },
   });
 
   async function onSubmit(values: ContactFormValues) {
     setIsSubmitting(true);
+    setSubmissionStatus(null);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log("Form submitted:", values);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you shortly.",
-      variant: "default", 
-    });
-    form.reset();
+    console.log("Project inquiry submitted:", values);
+    // Simulate success/error
+    const success = Math.random() > 0.2; // 80% chance of success
+    if (success) {
+      setSubmissionStatus({ type: 'success', message: "Thank you for your project inquiry! We'll get back to you shortly." });
+      form.reset();
+    } else {
+      setSubmissionStatus({ type: 'error', message: "Sorry, there was an issue submitting your inquiry. Please try again." });
+    }
     setIsSubmitting(false);
   }
 
   return (
-    <section id="contact" className={`py-16 md:py-24 bg-gradient-to-b from-background to-secondary transition-opacity duration-1000 ease-out ${mounted ? "opacity-100 animate-fade-in-up" : "opacity-0"}`}>
+    <section id="contact-project" className={`py-16 md:py-24 bg-gradient-to-b from-background to-secondary transition-opacity duration-1000 ease-out ${mounted ? "opacity-100 animate-fade-in-up" : "opacity-0"}`}>
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-            Get in Touch
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-foreground/80">
-            Have a project in mind or want to learn more about our services? We'd love to hear from you.
-          </p>
-        </div>
         <Card className="max-w-2xl mx-auto shadow-2xl">
           <CardHeader>
-            <CardTitle>Contact Us</CardTitle>
-            <CardDescription>Fill out the form below, and our team will reach out to you promptly.</CardDescription>
+            <CardTitle>Discuss Your Project</CardTitle>
+            <CardDescription>Interested in starting a project with us or collaborating? Fill out the form below, and our team will reach out to you promptly.</CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -111,32 +106,39 @@ export default function ContactFormSection() {
                 />
                 <FormField
                   control={form.control}
-                  name="message"
+                  name="projectDetails"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Your Message</FormLabel>
+                      <FormLabel>Project Details</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Tell us about your project or inquiry..." rows={5} {...field} className="focus:ring-primary focus:border-primary" />
+                        <Textarea placeholder="Tell us about your project, requirements, and goals..." rows={5} {...field} className="focus:ring-primary focus:border-primary" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+                 {submissionStatus && (
+                  <Alert variant={submissionStatus.type === 'error' ? 'destructive' : 'default'} className={submissionStatus.type === 'success' ? 'bg-green-50 border-green-300 text-green-700' : ''}>
+                    {submissionStatus.type === 'success' ? <CheckCircle2 className="h-5 w-5 text-green-500" /> : <AlertCircle className="h-5 w-5" />}
+                    <AlertTitle>{submissionStatus.type === 'success' ? 'Message Sent!' : 'Error'}</AlertTitle>
+                    <AlertDescription>{submissionStatus.message}</AlertDescription>
+                  </Alert>
+                )}
                 <Button 
                   type="submit" 
                   disabled={isSubmitting} 
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-lg py-6 shadow-lg transform hover:scale-102 transition-transform duration-300"
-                  aria-label="Send your message"
+                  aria-label="Send your project inquiry"
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Sending...
+                      Sending Inquiry...
                     </>
                   ) : (
                     <>
                       <Send className="mr-2 h-5 w-5" />
-                      Send Message
+                      Send Project Inquiry
                     </>
                   )}
                 </Button>
