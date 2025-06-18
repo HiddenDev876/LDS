@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useFormStatus } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -34,7 +34,7 @@ function SubmitButton() {
 }
 
 export default function AIServiceSummarizerSection() {
-  const [state, formAction] = useFormState(getServiceSummary, initialState);
+  const [state, formAction] = useActionState(getServiceSummary, initialState);
   const [mounted, setMounted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
