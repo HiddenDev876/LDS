@@ -20,3 +20,16 @@ export interface NavItem {
   label: string;
   href: string;
 }
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  imageUrl: string;
+  dataAiHint: string;
+  technologies: string[];
+  client?: string;
+  liveLink?: string;
+  category: string;
+}

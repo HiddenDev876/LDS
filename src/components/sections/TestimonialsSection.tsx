@@ -1,10 +1,10 @@
 "use client";
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"; // Removed CardTitle as it's not used here directly.
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
 import type { TestimonialItem } from "@/types";
-import Image from "next/image";
+// import Image from "next/image"; // Not used
 import { useEffect, useState } from "react";
 
 const testimonials: TestimonialItem[] = [
@@ -55,10 +55,10 @@ export default function TestimonialsSection() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <section id="testimonials" className={`py-16 md:py-24 bg-secondary transition-opacity duration-1000 ease-out ${mounted ? "opacity-100 animate-fade-in-up" : "opacity-0"}`}>
+    <section id="testimonials" className={`py-16 md:py-24 bg-gradient-to-b from-secondary via-background to-secondary transition-opacity duration-1000 ease-out ${mounted ? "opacity-100 animate-fade-in-up" : "opacity-0"}`}>
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="font-headline text-4xl font-bold tracking-tight text-primary sm:text-5xl">
             What Our Clients Say
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-foreground/80">
@@ -69,24 +69,24 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={testimonial.id} 
-              className={`bg-card shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 flex flex-col animate-fade-in-up h-full`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              className={`bg-card shadow-xl hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1.5 flex flex-col animate-fade-in-up h-full group`}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardHeader className="pb-4">
-                <Quote className="h-10 w-10 text-primary/30 mb-2" />
-                <CardContent className="p-0 text-base text-foreground/80 italic flex-grow">
+              <CardHeader className="pb-4 pt-6">
+                <Quote className="h-12 w-12 text-accent/30 mb-3 group-hover:text-accent/50 transition-colors" />
+                <CardContent className="p-0 text-base text-foreground/80 italic flex-grow min-h-[120px]">
                   "{testimonial.testimonial}"
                 </CardContent>
               </CardHeader>
-              <CardFooter className="mt-auto pt-4 border-t border-border">
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12">
+              <CardFooter className="mt-auto pt-5 pb-6 border-t border-border/70">
+                <div className="flex items-center gap-4">
+                  <Avatar className="h-14 w-14 border-2 border-primary/20 group-hover:border-accent/40 transition-colors">
                     <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.dataAiHint} />
                     <AvatarFallback>{testimonial.name.substring(0, 2).toUpperCase()}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-semibold text-md text-primary">{testimonial.name}</p>
-                    <p className="text-xs text-foreground/70">{testimonial.company}</p>
+                    <p className="font-semibold text-lg text-primary group-hover:text-accent transition-colors">{testimonial.name}</p>
+                    <p className="text-sm text-foreground/70">{testimonial.company}</p>
                   </div>
                 </div>
               </CardFooter>
